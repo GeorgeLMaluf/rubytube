@@ -19,6 +19,7 @@ Dentro da pasta do projeto, execute:
 $ bundle install
 ```
 ## Inicialização do banco de dados
+Para conexão local de desenvolvimento, altere as constantes encontradas no arquivo .ENV na pasta raiz do projeto
 ```console
 $ rake db:setup
 ```
