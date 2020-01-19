@@ -85,6 +85,3 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: rubytube
-  username: rubytube
-  password: <%= ENV['RUBYTUBE_DATABASE_PASSWORD'] %>
