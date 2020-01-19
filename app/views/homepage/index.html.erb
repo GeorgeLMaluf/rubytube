@@ -1,0 +1,19 @@
+<% if @videos.length == 0 %>
+  <div class="container">
+    <h2 class="textlight">RubyTube</h2>
+    <p>Nenhum vídeo disponível.<br>
+    <%= link_to "Clique aqui", new_video_path, class: "button" %>
+    para enviar um vídeo.</p>
+  </div>
+<% else %>
+  <div class="container">
+    <div class="tiles-grid">
+      <% @videos.each do |v| %>
+        <%= link_to v, :class => "tile-medium bg-light-hover fg-darkBlue-hover", "data-role" => "tile", "data-size" => "medium", "data-role-tile" => "true" do %>
+            <span class="mif-play mif-5x icon"></span>
+            <span class="branding-bar"><%= v.nome.truncate(20) %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

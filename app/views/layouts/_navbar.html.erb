@@ -1,0 +1,26 @@
+<nav class="bg-darkCyan fg-white pos-absolute" data-role="appbar" data-expand-point="md">
+	<%= link_to (root_path), :class => "brand no-hover" do %>
+		<%= image_tag 'logo.png' %>&nbsp;<span class="app-bar-name">RubyTube</span>
+	<% end %>
+	<% if user_signed_in? %>
+		<div class="app-bar-container ml-auto">
+			<%= link_to (new_video_path), class: "app-bar-item", id: "new_video" do%>
+				<span class="mif-plus mif-lg"></span>
+			<% end %>
+			<%= link_to "Meus Vídeos", videos_path, class: "app-bar-item" %>
+			<a href="#" class="app-bar-item dropdown-toggle">
+				<span class="mif-user mif-lg"></span><%= current_user.nome %></a>
+			<ul class="d-menu" data-role="dropdown">
+				<li><%= link_to "Minha conta", edit_user_registration_path %></li>
+				<li class="divider bg-lightGray"></li>
+				<li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+			</ul>
+		</div>
+	<% else %>
+		<div class="app-bar-container ml-auto">
+			<ul class="app-bar-menu">
+				<li><%= link_to "Login", new_user_session_path %>
+			</ul>
+		</div>
+	<% end %>
+</nav>

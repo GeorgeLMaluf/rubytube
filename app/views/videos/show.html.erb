@@ -1,0 +1,94 @@
+<div class="row border-bottom bd-lightGray">
+	<div class="cell-md-12 d-flex flex-justify-center flex-justify-start-md">
+		<ul class="breadcrumbs bg-transparent">
+			<li class="page-item">
+				<%= link_to  root_path do %>
+					<span class="mif-home"></span>
+					Home
+				<% end %>
+			</li>
+			<% if user_signed_in? %>
+				<%if @video.user_id == current_user.id %>
+					<li class="page-item">
+						<%= link_to "Meus videos",  videos_path %>
+					</li>
+				<% end %>
+			<% end %>
+			<li class="page-item">
+				<%= @video.nome %>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="card">
+	<div class="card-content d-flex flex-justify-center">
+		<video id="netshow" class="video-js vjs-default-skin" controls preload="auto" width="532" height="400"
+		  data-setup='{}'>
+			<source src="<%= @video.url %>" type="application/x-mpegURL">
+		</video>
+	</div>
+</div>
+
+<div class="d-flex flex-justify-end">
+	<div class="mr-auto">
+		<%= link_to root_path, class: "button" do %>
+			<span class="mif-arrow-left"></span>&nbsp;Voltar
+		<% end %>
+	</div>
+	<%if user_signed_in? %>
+		<% if @video.user_id == current_user.id %>
+			<div>
+				<%= link_to edit_video_path(@video), id: "edit_video", class: "button warning" do %>
+					<span class="mif-pencil"></span>&nbsp; Editar
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+
+<script>
+videojs.addLanguage("pt-br", {
+"Play": "Rodar",
+"Play Video": "Rodar vídeo",
+"Pause": "Pausar",
+"Current Time": "Tempo atual",
+"Duration": "Duração",
+"Remaining Time": "Tempo restante",
+"Stream Type": "Tipo de stream",
+"LIVE": "AO VIVO",
+"Loaded": "Carregou",
+"Progress": "Progresso",
+"Fullscreen": "Tela cheia",
+"Non-Fullscreen": "Tela pequena",
+"Mute": "Silêncio",
+"Unmute": "Desligar silêncio",
+"Playback Rate": "Velocidade de Reprodução",
+"Subtitles": "Legendas",
+"subtitles off": "Legendas desligadas",
+"Captions": "Captions",
+"captions off": "Captions desligados",
+"Chapters": "Capítulos",
+"You aborted the media playback": "Você interrompeu o vídeo.",
+"A network error caused the media download to fail part-way.": "Um erro de rede interrompeu o carregamento do vídeo.",
+"The media could not be loaded, either because the server or network failed or because the format is not supported.": "Não foi possível carregar o vídeo devido a problema na conexão ou no servidor, ou porque o formato não é suportado.",
+"The media playback was aborted due to a corruption problem or because the media used features your browser did not support.": "A reprodução deste vídeo foi interrompida por um problema de dados corrompidos, ou necessita de funções que seu navegador não oferece.",
+"No compatible source was found for this media.": "Não foi encontrado fontes compatíveis com este vídeo."
+});
+
+
+var options = {
+language: 'pt-br'
+}
+
+var myvideo = videojs("netshow", options);
+
+myvideo.src({
+  src: "<%= @video.url %>",
+  type: "application/x-mpegURL",
+});
+
+myvideo.controls(true);
+
+myvideo.play();
+
+</script>

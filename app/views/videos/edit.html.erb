@@ -1,0 +1,19 @@
+<div class="row border-bottom bd-lightGray m-3">
+	<div class="cell-md-12 d-flex flex-justify-center flex-justify-start-md">
+		<ul class="breadcrumbs bg-transparent">
+			<li class="page-item">
+				<%= link_to  root_path do %>
+					<span class="mif-home"></span>
+					Home
+				<% end %>
+			</li>
+      <li class="page-item">
+				<%= link_to  videos_path do %>
+					Meus videos
+				<% end %>
+			</li>
+			<li class="page-item">Editar vídeo</li>
+		</ul>
+	</div>
+</div>
+<%= render 'form', video: @video %>

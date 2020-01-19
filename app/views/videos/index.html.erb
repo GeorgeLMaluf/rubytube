@@ -1,0 +1,48 @@
+<div class="row border-bottom bd-lightGray">
+	<div class="cell-md-12 d-flex flex-justify-center flex-justify-start-md">
+		<ul class="breadcrumbs bg-transparent">
+			<li class="page-item">
+				<%= link_to root_path do %>
+					<span class="mif-home"></span>
+					Home
+				<% end %>
+			</li>
+			<li class="page-item">Meus videos</li>
+		</ul>
+	</div>
+</div>
+<div class="row d-flex flex-justify-end">
+	<div class="cell-md-1">
+		<%= link_to new_video_path, class: "button primary" do %>
+			<span class="mif-plus"></span>&nbsp;Novo
+		<% end %>
+	</div>
+
+</div>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Url</th>
+			<th colspan="2"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @videos.each do |v| %>
+			<tr>
+				<td><%= link_to v.nome, v, id: "show_#{v.id}" %></td>
+				<td><%= v.url.truncate(30) %></td>
+				<td>
+					<%= link_to edit_video_path(v), id: "edit_#{v.id}", class: "button warning" do %>
+						<span class="mif-pencil"></span>&nbsp;Editar
+					<% end %>
+				</td>
+				<td>
+					<%= link_to v, method: :delete, data: { confirm: 'Apagar o video?'}, id: "delete_#{v.id}", class: "button alert" do %>
+						<span class="mif-cross"></span>&nbsp;Apagar
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

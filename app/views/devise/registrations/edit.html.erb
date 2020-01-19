@@ -1,0 +1,46 @@
+<div class="row border-bottom bd-lightGray m-3">
+	<div class="cell-md-10">
+    <h2>Minha conta</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group">
+        <%= f.label "Email" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label "Senha" %> <i>(deixe em branco caso não queira alterar)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= @minimum_password_length %> caracteres pelo menos</em>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Confirmação de senha" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Senha atual" %> <i>(você precisa informar sua senha para confirmar suas alterações)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Alterar", class: "button primary" %>
+      </div>
+    <% end %>
+
+    <h3>Cancelar minha conta</h3>
+
+    <p>Insatisfeito? <%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Tem certeza?" }, method: :delete, class: "button alert" %></p>
+
+    <%= link_to "Voltar", :back, class: "button" %>
+  </div>
+</div>

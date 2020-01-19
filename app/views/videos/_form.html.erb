@@ -1,0 +1,29 @@
+<div class="row border-bottom bd-lightGray m-3">
+	<div class="cell-md-10">
+		<%= form_with(model: video, local:true) do |f| %>
+			<% if video.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(video.errors.count, "error") %>
+						não permitem que o video seja salvo:</h2>
+					<ul>
+						<% video.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			<div class="form-group">
+				<%= f.label :nome %>
+				<%= f.text_field :nome, autofocus: true %>
+			</div>
+			<div class="form-group">
+				<%= f.label :url %><br />
+				<%= f.url_field :url %>
+			</div>
+			<div class="form-group">
+				<%= f.submit "Salvar", class: "button primary"%>
+				<%= link_to "Voltar", videos_path, class: "button " %>
+			</div>
+		<% end %>
+	</div>
+</div>
