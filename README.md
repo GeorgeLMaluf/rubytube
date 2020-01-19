@@ -3,6 +3,8 @@
 Um clone do Youtube escrito em Ruby on Rails usando uma base de dados PostgreSQL e MetroUICSS.
 Essa apl A Youtube clone made in Ruby on Rails using a PostgreSQL database and MetroUI CSS framework.
 
+Veja a demonstração em https://wp-rubytube.herokuapp.com/
+
 ## Ruby version
 2.5.3
 
